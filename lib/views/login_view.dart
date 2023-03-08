@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../providers/loginformprovider.dart';
 import '../widgets/widgets.dart';
 
-
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
   @override
@@ -25,7 +24,7 @@ class LoginView extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Login",
+                    "Iniciar sesión",
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   const SizedBox(
@@ -38,9 +37,18 @@ class LoginView extends StatelessWidget {
                 ],
               )),
               const SizedBox(height: 30),
-              const Text(
-                "¿Ha olvidado su contraseña?",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              TextButton(
+                style: ButtonStyle(
+                  overlayColor: MaterialStateProperty.all(
+                    Colors.grey[100]),
+                    shape: MaterialStateProperty.all(
+                      const StadiumBorder()
+                    )
+                ),
+                child: const Text("Crear una cuenta nueva", style: TextStyle(color: Colors.black87, fontSize: 18),),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, 'registro');
+                },
               )
             ],
           ),
@@ -109,7 +117,8 @@ class _LoginForm extends StatelessWidget {
                       if (!loginform.isValidForm()) return;
                       loginform.isLoading = true;
                       await Future.delayed(const Duration(seconds: 3));
-                      Future(()=> Navigator.pushReplacementNamed(context, 'home'));
+                      Future(() =>
+                          Navigator.pushReplacementNamed(context, 'home'));
                     },
               child: Container(
                 padding:
