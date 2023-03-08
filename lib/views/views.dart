@@ -1,3 +1,4 @@
+export 'package:crud_servicos/views/verificar_auth_view.dart';
 export 'package:crud_servicos/views/registrarse_view.dart';
 export 'package:crud_servicos/views/product_view.dart';
 export 'package:crud_servicos/views/home_view.dart';

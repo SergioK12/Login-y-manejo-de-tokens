@@ -14,12 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Validacion de formularios',
-      initialRoute: 'login',
+      initialRoute: 'check',
       routes: {
         'login': (context) => const LoginView(),
         'home': (context) => const HomeView(),
         'product': (context) => const ProductsView(),
         'registro': (context) => const RegistoView(),
+        'check': (context) => const CheckAuthScreen(),
       },
       theme: ThemeData.light().copyWith(
           appBarTheme: const AppBarTheme(
