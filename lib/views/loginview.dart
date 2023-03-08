@@ -1,9 +1,10 @@
+import 'package:crud_servicos/ui/inputdecorations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:validacion_de_formularios/ui/inputdecorations.dart';
 
 import '../providers/loginformprovider.dart';
 import '../widgets/widgets.dart';
+
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -108,7 +109,7 @@ class _LoginForm extends StatelessWidget {
                       if (!loginform.isValidForm()) return;
                       loginform.isLoading = true;
                       await Future.delayed(const Duration(seconds: 3));
-                      
+                      Future(()=> Navigator.pushReplacementNamed(context, 'home'));
                     },
               child: Container(
                 padding:

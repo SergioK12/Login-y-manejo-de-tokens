@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.validacion_de_formularios">
+    package="com.example.crud_servicos">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="validacion_de_formularios"
+        android:label="crud_servicos"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
+        
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "validacion_de_formularios" "\0"
+            VALUE "FileDescription", "crud_servicos" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "validacion_de_formularios" "\0"
+            VALUE "InternalName", "crud_servicos" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "validacion_de_formularios.exe" "\0"
-            VALUE "ProductName", "validacion_de_formularios" "\0"
+            VALUE "OriginalFilename", "crud_servicos.exe" "\0"
+            VALUE "ProductName", "crud_servicos" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

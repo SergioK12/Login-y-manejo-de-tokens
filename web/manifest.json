@@ -1,6 +1,6 @@
 {
-    "name": "validacion_de_formularios",
-    "short_name": "validacion_de_formularios",
+    "name": "crud_servicos",
+    "short_name": "crud_servicos",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
