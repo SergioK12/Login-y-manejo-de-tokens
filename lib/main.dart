@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey:  NotificationsService.messengerKey,
       debugShowCheckedModeBanner: false,
       title: 'Validacion de formularios',
-      initialRoute: 'check',
+      initialRoute: 'login',
       routes: {
         'login': (context) => const LoginView(),
         'home': (context) => const HomeView(),

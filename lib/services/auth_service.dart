@@ -10,7 +10,11 @@ class AuthService extends ChangeNotifier {
   final storage = const FlutterSecureStorage();
 
   Future<String?> crearusuario(String correo, String contra) async {
-    final Map<String, dynamic> authData = {'email': correo, 'password': contra};
+    final Map<String, dynamic> authData = {
+      'email': correo,
+       'password': contra,
+       'returnSecureToken': true
+      };
 
     final url =
         Uri.https(_baseUrl, '/v1/accounts:signUp', {'key': _firebaseToken});
@@ -28,7 +32,7 @@ class AuthService extends ChangeNotifier {
   }
 
   login(String email, String contra) async {
-    final Map<String, dynamic> authData = {'email': email, 'password': contra};
+    final Map<String, dynamic> authData = {'email': email, 'password': contra, 'returnSecureToken': true};
 
     final url = Uri.https(
         _baseUrl, '/v1/accounts:signInWithPassword', {'key': _firebaseToken});
