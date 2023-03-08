@@ -7,6 +7,7 @@ class LoadingView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Productos'),
+        centerTitle: true,
       ),
       body: const Center(
         child: CircularProgressIndicator()

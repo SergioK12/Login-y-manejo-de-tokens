@@ -38,6 +38,7 @@ class AuthService extends ChangeNotifier {
     final Map<String, dynamic> decodeResp = json.decode(resp.body);
 
     if (decodeResp.containsKey('idToken')) {
+       storage.write(key: 'token', value: decodeResp['idToken']);
       return null;
     } else {
       return decodeResp['error']['message'];
