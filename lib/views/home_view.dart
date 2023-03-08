@@ -10,6 +10,7 @@ class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final authprovider = Provider.of<AuthService>(context, listen: false);
     final productprovider = Provider.of<ProductsServices>(context);
     if (productprovider.isLoading == true) return const LoadingView();
     final lista = productprovider.listadeproductos;
@@ -17,6 +18,13 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Productos'),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              authprovider.logout();
+              Navigator.pushReplacementNamed(context, 'login');
+            },
+            icon: const Icon(Icons.logout_rounded)),
       ),
       body: ListView.builder(
           itemCount: lista.length,
@@ -31,12 +39,11 @@ class HomeView extends StatelessWidget {
                   },
                 ),
               )),
-      floatingActionButton:
-          FloatingActionButton(child: const Icon(Icons.add), onPressed: () {
-            productprovider.selectedProduct = Producto(
-              disponibilidad: true,
-              nombre: ' ',
-              precio: 0.0);
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            productprovider.selectedProduct =
+                Producto(disponibilidad: true, nombre: ' ', precio: 0.0);
             Navigator.pushNamed(context, 'product');
           }),
     );
