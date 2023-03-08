@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey:  NotificationsService.messengerKey,
       debugShowCheckedModeBanner: false,
       title: 'Validacion de formularios',
       initialRoute: 'check',

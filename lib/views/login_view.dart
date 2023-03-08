@@ -40,13 +40,12 @@ class LoginView extends StatelessWidget {
               const SizedBox(height: 30),
               TextButton(
                 style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all(
-                    Colors.grey[100]),
-                    shape: MaterialStateProperty.all(
-                      const StadiumBorder()
-                    )
+                    overlayColor: MaterialStateProperty.all(Colors.grey[100]),
+                    shape: MaterialStateProperty.all(const StadiumBorder())),
+                child: const Text(
+                  "Crear una cuenta nueva",
+                  style: TextStyle(color: Colors.black87, fontSize: 18),
                 ),
-                child: const Text("Crear una cuenta nueva", style: TextStyle(color: Colors.black87, fontSize: 18),),
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'registro');
                 },
@@ -113,19 +112,22 @@ class _LoginForm extends StatelessWidget {
               onPressed: loginform.isLoading
                   ? null
                   : () async {
-                       FocusScope.of(context).unfocus();
+                      FocusScope.of(context).unfocus();
                       final authservice =
                           Provider.of<AuthService>(context, listen: false);
 
                       if (!loginform.isValidForm()) return;
                       loginform.isLoading = true;
-                      final String? mensajeError = await authservice.login(loginform.email, loginform.contra);
-                        if(mensajeError == null){
-                          Future(() =>Navigator.pushReplacementNamed(context, 'home'));
-                        }else{
-                          debugPrint(mensajeError);
-                        }
+                      final String? mensajeError = await authservice.login(
+                          loginform.email, loginform.contra);
+                      if (mensajeError == null) {
+                        Future(() =>
+                            Navigator.pushReplacementNamed(context, 'home'));
+                      } else {
+                        debugPrint(mensajeError);
                         loginform.isLoading = false;
+                        NotificationsService.showSnackbar(mensajeError);
+                      }
                     },
               child: Container(
                 padding:
