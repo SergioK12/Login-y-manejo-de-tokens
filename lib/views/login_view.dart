@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/loginformprovider.dart';
+import '../services/services.dart';
 import '../widgets/widgets.dart';
 
 class LoginView extends StatelessWidget {
@@ -112,13 +113,19 @@ class _LoginForm extends StatelessWidget {
               onPressed: loginform.isLoading
                   ? null
                   : () async {
-                      FocusScope.of(context).unfocus();
+                       FocusScope.of(context).unfocus();
+                      final authservice =
+                          Provider.of<AuthService>(context, listen: false);
 
                       if (!loginform.isValidForm()) return;
                       loginform.isLoading = true;
-                      await Future.delayed(const Duration(seconds: 3));
-                      Future(() =>
-                          Navigator.pushReplacementNamed(context, 'home'));
+                      final String? mensajeError = await authservice.login(loginform.email, loginform.contra);
+                        if(mensajeError == null){
+                          Future(() =>Navigator.pushReplacementNamed(context, 'home'));
+                        }else{
+                          debugPrint(mensajeError);
+                        }
+                        loginform.isLoading = false;
                     },
               child: Container(
                 padding:

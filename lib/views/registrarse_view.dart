@@ -2,9 +2,9 @@ import 'package:crud_servicos/ui/inputdecorations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/loginformprovider.dart';
+import 'package:crud_servicos/services/services.dart';
+import '../providers/providers.dart';
 import '../widgets/widgets.dart';
-
 
 class RegistoView extends StatelessWidget {
   const RegistoView({Key? key}) : super(key: key);
@@ -40,13 +40,12 @@ class RegistoView extends StatelessWidget {
               const SizedBox(height: 30),
               TextButton(
                 style: ButtonStyle(
-                  overlayColor: MaterialStateProperty.all(
-                    Colors.grey[100]),
-                    shape: MaterialStateProperty.all(
-                      const StadiumBorder()
-                    )
+                    overlayColor: MaterialStateProperty.all(Colors.grey[100]),
+                    shape: MaterialStateProperty.all(const StadiumBorder())),
+                child: const Text(
+                  "¿Ya tienes una cuenta?",
+                  style: TextStyle(color: Colors.black87, fontSize: 18),
                 ),
-                child: const Text("¿Ya tienes una cuenta?", style: TextStyle(color: Colors.black87, fontSize: 18),),
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, 'login');
                 },
@@ -114,17 +113,24 @@ class _LoginForm extends StatelessWidget {
                   ? null
                   : () async {
                       FocusScope.of(context).unfocus();
+                      final authservice =
+                          Provider.of<AuthService>(context, listen: false);
 
                       if (!loginform.isValidForm()) return;
                       loginform.isLoading = true;
-                      await Future.delayed(const Duration(seconds: 3));
-                      Future(()=> Navigator.pushReplacementNamed(context, 'home'));
+                      final String? mensajeError = await authservice.crearusuario(loginform.email, loginform.contra);
+                        if(mensajeError == null){
+                          Future(() =>Navigator.pushReplacementNamed(context, 'home'));
+                        }else{
+                          debugPrint(mensajeError);
+                        }
+                        loginform.isLoading = false;
                     },
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 child: Text(
-                  (loginform.isLoading) ? "Cargando" : "Ingresar",
+                  (loginform.isLoading) ? "Cargando" : "Registrarme",
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
