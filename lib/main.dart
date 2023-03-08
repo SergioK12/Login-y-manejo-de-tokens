@@ -14,11 +14,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Validacion de formularios',
-      initialRoute: 'home',
+      initialRoute: 'login',
       routes: {
         'login': (context) => const LoginView(),
         'home': (context) => const HomeView(),
         'product': (context) => const ProductsView(),
+        'registro': (context) => const RegistoView(),
       },
       theme: ThemeData.light().copyWith(
           appBarTheme: const AppBarTheme(
